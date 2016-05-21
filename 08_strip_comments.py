@@ -8,17 +8,29 @@ def solution(string, markers):
     :return: striped string
     :rtype: str
     """
-    # missing cases when len(marker) > 1
+    # missing cases when len(marker[i]) > 1
     # Todo
-    i = 0
-    while i < len(string):
-        if string[i] in markers:
-            if string.find('\n', i) != -1:
-                string = string[:i].rstrip() + string[string.index('\n', i):]
-            else:
-                string = string[:i].rstrip()
-        i += 1
+    for mark in markers:
+        while mark in string:
+            l = string.index(mark)
+            string = (string[:l].rstrip(' ') if
+                      string.find('\n', l + len(mark)) == -1
+                      else (string[:l].rstrip(' ') +
+                            string[string.index('\n', l):]))
     return string
+
+
+# answer soln
+def strip_line(line, markers):
+    for m in markers:
+        if m in line:
+            line = line[:line.index(m)]
+    return line.rstrip()
+
+
+def ans_solution(string,markers):
+    stripped = [strip_line(l, markers) for l in string.splitlines()]
+    return '\n'.join(stripped)
 
 if __name__ == "__main__":
     print(solution("apples, pears # and bananas\ngrapes\nbananas !apples",
