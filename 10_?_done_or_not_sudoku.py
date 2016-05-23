@@ -65,6 +65,36 @@ def soln_done_or_not(board):
     return 'Finished!'
 
 
+# correct soln_2:
+correct = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+def soln_2_done_or_not(board):  # board[i][j]
+    # check rows
+    for row in board:
+        if sorted(row) != correct:
+            return "Try again!"
+
+    # check columns
+    # Todo: learn about zip()
+    for column in zip(*board):
+        if sorted(column) != correct:
+            return "Try again!"
+
+    # check regions
+    for x in range(3):
+        for j in range(3):
+            region = []
+            for line in board[x * 3:(x + 1) * 3]:
+                region += line[j * 3:(j + 1) * 3]
+
+            if sorted(region) != correct:
+                return "Try again!"
+
+    # if everything correct
+    return "Finished!"
+
+
 if __name__ == '__main__':
     print('first test case:\n')
     for i in [[1, 3, 2, 5, 7, 9, 4, 6, 8],
