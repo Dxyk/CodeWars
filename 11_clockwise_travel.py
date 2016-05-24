@@ -39,10 +39,37 @@ def snail(array):
     return visited
 
 
+# closest to my soln:
+# xrange?
+def closest_snail(array):
+    ret = []
+    if array and array[0]:
+        size = len(array)
+        for n in xrange((size + 1) // 2):
+            for x in xrange(n, size - n):
+                ret.append(array[n][x])
+            for y in xrange(1 + n, size - n):
+                ret.append(array[y][-1 - n])
+            for x in xrange(2 + n, size - n + 1):
+                ret.append(array[-1 - n][-x])
+            for y in xrange(2 + n, size - n):
+                ret.append(array[-y][n])
+    return ret
+
 # clever soln:
 # Todo: don't understand zip(*)
 def soln_snail(array):
     return list(array[0]) + soln_snail(zip(*array[1:])[::-1]) if array else []
+
+
+# clever soln:
+def soln_2_snail(array):
+    a = []
+    while array:
+        a.extend(list(array.pop(0)))
+        array = zip(*array)
+        array.reverse()
+    return a
 
 if __name__ == '__main__':
     import doctest
