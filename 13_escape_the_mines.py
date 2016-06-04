@@ -14,6 +14,27 @@ def solve(m, miner, ex):
              'up' and 'down'
     :rtype: list[str]
     """
+    # miner at exit position
     if miner['x'] == ex['x'] and miner['y'] == ex['y']:
         return []
+    # miner not at exit position
+    else:
+        # see for miner's left
+        if miner['x'] >= 1 and m[miner['x'] - 1][miner['y']]:
+            return (['left'] +
+                    solve(m, {'x': miner['x'] - 1, 'y': miner['y']}, ex))
+        # see for miner's right
+        if miner['x'] <= len(m) - 2 and m[miner['x'] + 1][miner['y']]:
+            return (['right'] +
+                    solve(m, {'x': miner['x'] + 1, 'y': miner['y']}, ex))
+        # see for miner's up
+        if miner['y'] >= 1 and m[miner['x']][miner['y'] - 1]:
+            return (['up'] +
+                    solve(m, {'x': miner['x'], 'y': miner['y'] - 1}, ex))
+        # see for miner's down
+        if miner['y'] <= len(m[0]) - 2 and m[miner['x']][miner['y'] + 1]:
+            return (['down'] +
+                    solve(m, {'x': miner['x'], 'y': miner['y'] + 1}, ex))
+        # cornered
+        return None
 
