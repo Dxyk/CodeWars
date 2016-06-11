@@ -1,6 +1,7 @@
 import re
-# WTF is re??
 
+
+# WTF is re??
 def domain_name(url):
     """
     parse the domain name from a given url
