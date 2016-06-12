@@ -1,3 +1,1 @@
 # CodeWars
-
-## Interesting katas
