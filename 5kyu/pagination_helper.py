@@ -17,7 +17,7 @@ class PaginationHelper:
 
         >>> helper = PaginationHelper(['a','b','c','d','e','f'], 4)
         >>> helper.collection
-        ['a','b','c','d','e','f']
+        ['a', 'b', 'c', 'd', 'e', 'f']
         >>> helper.item_per_page
         4
         """
