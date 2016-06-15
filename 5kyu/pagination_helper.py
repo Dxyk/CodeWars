@@ -47,8 +47,9 @@ class PaginationHelper:
         >>> helper.page_count()
         2
         """
-        page = len(self.collection) / self.item_per_page
-        return int(page) if float(page).is_integer() else int(page) + 1
+        page = len(self.collection) // self.item_per_page
+        page_ = len(self.collection) % self.item_per_page
+        return int(page) if page_ == 0 else page + 1
 
     def page_item_count(self, page_index):
         """
