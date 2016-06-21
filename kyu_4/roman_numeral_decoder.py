@@ -22,25 +22,17 @@ def solution(roman):
         return roman_int[roman]
     else:
         result = 0
-        i = 0
+        i = 1
         temp = 0
         minus = 0
-        while i < len(roman) - 1:
-            if i != len(roman) - 1:
-                if roman_int[roman[i]] >= roman_int[roman[i + 1]]:
-                    temp += roman_int[roman[i]]
-                    result += temp - minus
-                    temp, minus = 0, 0
-                else:
-                    j = i
-                    while roman_int[roman[j]] < roman_int[roman[j + 1]]:
-                        minus += roman_int[roman[j]]
-                        j += 1
-
-            # print('i =', i, ', [i] =', roman[i])
-            # print('result =', result)
-            # print('temp =', temp)
-            # print('minus =', minus)
-            # print('-' * 20)
-            # i += 1
+        while i < len(roman):
+            if roman_int[roman[i]] <= roman_int[roman[i - 1]]:
+                temp += roman_int[roman[i - 1]]
+                result += temp
+                temp = 0
+            else:
+                temp += roman_int[roman[i - 1]]
+                result -= temp
+                temp = 0
+            i += 1
         return result + temp - minus + roman_int[roman[-1]]
