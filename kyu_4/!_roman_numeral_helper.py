@@ -3,7 +3,7 @@ class RomanNumerals:
     # TODO: unbound method to_roman() must be called with RomanNumerals instance
     # TODO: as first argument (got int instance instead)
     """Convert roman num to and from numeral num."""
-
+    @staticmethod
     def to_roman(self, n):
         """
         Turn the numeral number into roman number.
@@ -42,7 +42,7 @@ class RomanNumerals:
                 roman_string += roman_numerals[key]
                 n -= key
         return roman_string
-
+    @staticmethod
     def from_roman(self, roman):
         """
         Turn the roman numeral into an integer.
