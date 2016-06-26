@@ -1,4 +1,4 @@
-# didn't pass all tests
+w# didn't pass all tests
 def group_check(s):
     """
     Check grouping
