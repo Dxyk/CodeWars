@@ -8,4 +8,4 @@ def anagrams(word, words):
     :return: list of anagrams
     :rtype: list
     """
-    return [w for w in words if sorted(words) == sorted(w)]
+    return [w for w in words if sorted(w) == sorted(word)]
