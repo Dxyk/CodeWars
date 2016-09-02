@@ -11,10 +11,10 @@ def recover_secret(triplets):
     >>> triplets = [['t','u','p'],['w','h','i'],['t','s','u'],['a','t','s'],['h','a','p'],['t','i','s'],['w','h','s']]
     "whatisup"
     """
-    r = list(set([i for l in triplets for i in l]))
-    for l in triplets:
-        fix(r, l[1], l[2])
-        fix(r, l[0], l[1])
+    r = list(set([i for triplet in triplets for i in triplet]))
+    for triplet in triplets:
+        fix(r, triplet[1], triplet[2])
+        fix(r, triplet[0], triplet[1])
     return ''.join(r)
 
 
