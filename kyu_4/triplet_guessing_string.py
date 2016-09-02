@@ -1,17 +1,4 @@
 def recover_secret(triplets):
-    """
-    return a string that is constructed from a list of triplets, whose each
-    letter in a triplet appears as in order in the string returned. each letter
-    in the triplet list appears once.
-    :param triplets: a list of triplets containing the letters of the string
-    :type triplets: list[list]
-    :return: the secret unknown string
-    :rtype: str
-
-    >>> triplets = [['t','u','p'],['w','h','i'],['t','s','u'],['a','t','s'],\
-    ['h','a','p'],['t','i','s'],['w','h','s']]
-    "whatisup"
-    """
     r = list(set([i for triplet in triplets for i in triplet]))
     for triplet in triplets:
         fix(r, triplet[1], triplet[2])
@@ -27,6 +14,19 @@ def fix(l, a, b):
 
 
 def soln_recover_secret(triplets):
+    """
+    return a string that is constructed from a list of triplets, whose each
+    letter in a triplet appears as in order in the string returned. each letter
+    in the triplet list appears once.
+    :param triplets: a list of triplets containing the letters of the string
+    :type triplets: list[list]
+    :return: the secret unknown string
+    :rtype: str
+
+    >>> triplets = [['t','u','p'],['w','h','i'],['t','s','u'],['a','t','s'],\
+    ['h','a','p'],['t','i','s'],['w','h','s']]
+    "whatisup"
+    """
     letters = list(set([l for t in triplets for l in t]))
 
     for t in triplets * len(letters):
