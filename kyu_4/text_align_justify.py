@@ -10,27 +10,46 @@ def justify(text, width):
     :type width: int
     :return: justified text
     :rtype: str
-
     """
     l = text.split()
-    length = 0
+    l.reverse()
     r = []
     while l:
         words = []
-        while sum([len(w) for w in words]) <= width:
+        while l and sum([len(w) for w in words]) + len(l[-1]) + 1 <= width:
             words.append(l.pop() + " ")
+        words[-1] = words[-1].rstrip()
+        if len(words) == 1:
+            break
+        # Todo: spacing between words
         while sum([len(w) for w in words]) < width:
             for i in range(len(words) - 1):
-                if words[i].count(" ") <= words[i + 1].count(""):
-                    words[i] += words[i] + " "
+                if words[i].count(" ") < words[i + 1].count(""):
+                    words[i] += " "
                     break
         r.append("".join(words))
+    r[-1] = " ".join(r[-1].split())
     return "\n".join(r)
 
 
 if __name__ == "__main__":
     soln = justify(
-        "Lorem  ipsum  dolor  sit amet,consectetur  adipiscing  elit. Vestibulum    sagittis   dolor mauris,  at  elementum  ligula tempor  eget.  In quis rhoncus nunc,  at  aliquet orci. Fusce at   dolor   sit   amet  felis suscipit   tristique.   Nam  a imperdiet   tellus.  Nulla  eu vestibulum    urna.    Vivamus tincidunt  suscipit  enim, nec ultrices   nisi  volutpat  ac. Maecenas   sit   amet  lacinia arcu,  non dictum justo. Donec sed  quam  vel  risus faucibus euismod.  Suspendisse  rhoncus rhoncus  felis  at  fermentum. Donec lorem magna, ultricies a nunc    sit    amet,   blandit fringilla  nunc. In vestibulum velit    ac    felis   rhoncus pellentesque. Mauris at tellus enim.  Aliquam eleifend tempus dapibus. Pellentesque commodo, nisi    sit   amet   hendrerit fringilla,   ante  odio  porta lacus,   ut   elementum  justonulla et dolor.", 30)
+        "Lorem  ipsum  dolor  sit amet, consectetur  adipiscing  elit. "
+        "Vestibulum    sagittis   dolor mauris,  at  elementum  ligula tempor"
+        "  eget.  In quis rhoncus nunc,  at  aliquet orci. Fusce at   dolor   "
+        "sit   amet  felis suscipit   tristique.   Nam  a imperdiet   tellus. "
+        " Nulla  eu vestibulum    urna.    Vivamus tincidunt  suscipit  enim, "
+        "nec ultrices   nisi  volutpat  ac. Maecenas   sit   amet  lacinia"
+        " arcu,  non dictum justo. Donec sed  quam  vel  risus faucibus"
+        " euismod.  Suspendisse  rhoncus rhoncus  felis  at  fermentum."
+        " Donec lorem magna, ultricies a nunc    sit    amet,   blandit"
+        " fringilla  nunc. In vestibulum velit    ac    felis   rhoncus "
+        "pellentesque. Mauris at tellus enim.  Aliquam eleifend tempus "
+        "dapibus. Pellentesque commodo, nisi    sit   amet   hendrerit "
+        "fringilla,   ante  odio  porta lacus,   ut   elementum  justonulla"
+        " et dolor.", 30)
+    print(soln)
+
     answer = """Lorem  ipsum  dolor  sit amet,
 consectetur  adipiscing  elit.
 Vestibulum    sagittis   dolor
@@ -59,5 +78,3 @@ nisi    sit   amet   hendrerit
 fringilla,   ante  odio  porta
 lacus,   ut   elementum  justo
 nulla et dolor."""
-    print(answer == soln)
-
