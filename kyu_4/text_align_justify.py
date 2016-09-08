@@ -22,6 +22,7 @@ def justify(text, width):
         if len(words) == 1:
             break
         # Todo: spacing between words
+        print(words)
         while sum([len(w) for w in words]) < width:
             for i in range(len(words) - 1):
                 if words[i].count(" ") < words[i + 1].count(""):
@@ -30,6 +31,18 @@ def justify(text, width):
         r.append("".join(words))
     r[-1] = " ".join(r[-1].split())
     return "\n".join(r)
+
+    # soln:
+    # length = text.rfind(' ', 0, width+1)
+    # if length == -1 or len(text) <= width: return text
+    # line = text[:length]
+    # spaces = line.count(' ')
+    # if spaces != 0:
+    #     expand = (width - length) / spaces + 1
+    #     extra = (width - length) % spaces
+    #     line = line.replace(' ', ' '*expand)
+    #     line = line.replace(' '*expand, ' '*(expand+1), extra)
+    # return line + '\n' + justify(text[length+1:], width)
 
 
 if __name__ == "__main__":
@@ -48,7 +61,7 @@ if __name__ == "__main__":
         "dapibus. Pellentesque commodo, nisi    sit   amet   hendrerit "
         "fringilla,   ante  odio  porta lacus,   ut   elementum  justonulla"
         " et dolor.", 30)
-    print(soln)
+    # print(soln)
 
     answer = """Lorem  ipsum  dolor  sit amet,
 consectetur  adipiscing  elit.
